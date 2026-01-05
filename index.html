@@ -23,6 +23,11 @@ if (isStandalone) {
   location.replace('https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1');
 }
 
+if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+  // small delay gives the app time to become visible
+  setTimeout(() => location.replace('https://your.duck.ai/'), 200);
+}
+    
     // Register service worker for this origin (keeps PWA installable)
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js').catch(console.error);
@@ -36,4 +41,5 @@ if (isStandalone) {
   </noscript>
 </body>
 </html>
+
 
