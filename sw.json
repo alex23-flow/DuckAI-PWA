@@ -1,4 +1,4 @@
-const CACHE_NAME = 'duckai-pwa-v1';
+const CACHE_NAME = 'duckai-pwa-v2';
 const APP_SHELL = [
   './',
   'index.html',
@@ -40,6 +40,7 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(req).then(cached => {
       if (cached) return cached;
+      if (new URL(req.url).origin !== location.origin) return fetch(req);
       return fetch(req).then(resp => {
         // Cache same-origin GET responses
         if (req.method === 'GET' && resp && resp.type !== 'error') {
@@ -51,5 +52,6 @@ self.addEventListener('fetch', event => {
     })
   );
 });
+
 
 
