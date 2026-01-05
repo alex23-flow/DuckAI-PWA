@@ -3,7 +3,7 @@
   "short_name": "Duck.ai",
   "start_url": "/?source=pwa",
   "display": "standalone",
-  "scope": "/",
+  "scope": "./",
   "orientation": "portrait",
   "theme_color": "#FFFFFF",
   "background_color": "#FFFFFF",
@@ -22,4 +22,5 @@
     }
   ]
 }
+
 
