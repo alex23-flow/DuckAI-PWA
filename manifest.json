@@ -1,7 +1,7 @@
 {
   "name": "Duck.ai",
   "short_name": "Duck.ai",
-  "start_url": "/?source=pwa",
+  "start_url": "./",
   "display": "standalone",
   "scope": "./",
   "orientation": "portrait",
@@ -22,5 +22,6 @@
     }
   ]
 }
+
 
 
