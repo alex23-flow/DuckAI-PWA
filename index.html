@@ -18,6 +18,11 @@
       }
     })();
 
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+if (isStandalone) {
+  location.replace('https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1');
+}
+
     // Register service worker for this origin (keeps PWA installable)
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js').catch(console.error);
@@ -31,3 +36,4 @@
   </noscript>
 </body>
 </html>
+
