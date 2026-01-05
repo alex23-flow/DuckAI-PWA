@@ -18,6 +18,37 @@
       }
     })();
 
+<script>
+const DUCK_URL = 'https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1'; // replace with real URL
+
+// Register service worker (keep relative path)
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+
+// Helper: are we running as an installed PWA (standalone)?
+function isStandalone() {
+  return window.matchMedia('(display-mode: standalone)').matches
+    || window.navigator.standalone === true;
+}
+
+// If running as installed PWA, open Duck.ai inside the PWA window.
+// If not installed, show the install UI / link and do not redirect immediately.
+(async function() {
+  // Wait a short time so browser can finish startup and correctly report display-mode.
+  await new Promise(r => setTimeout(r, 150));
+
+  if (isStandalone()) {
+    // Navigate within the PWA window (not handing the URL to Firefox normal tab)
+    // Use location.replace so no extra history entry is left.
+    location.replace(https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1);
+  } else {
+    // Not installed: show a visible link or install prompt on the page.
+    // Optionally auto-open after a longer user-visible delay:
+    // setTimeout(() => location.href = DUCK_URL, 4000);
+  }
+})();
+</script>
+
+    
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 if (isStandalone) {
   location.replace('https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1');
@@ -41,6 +72,7 @@ if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.
   </noscript>
 </body>
 </html>
+
 
 
 
