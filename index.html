@@ -14,7 +14,7 @@
   <p>Install the PWA for quick access.</p>
   <div id="promptArea">
     <button id="installBtn" style="display:none">Install app</button>
-    <a id="openLink" href="YOUR_DUCKAI_URL" target="_blank" rel="noreferrer">Open Duck.ai now</a>
+    <a id="openLink" href="https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1" target="_blank" rel="noreferrer">Open Duck.ai now</a>
   </div>
 
   <script>
@@ -38,13 +38,14 @@
       deferredPrompt = null;
       installBtn.style.display = 'none';
       // After install accepted or dismissed, redirect to Duck.ai
-      location.replace('YOUR_DUCKAI_URL');
+      location.replace('https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1');
     });
 
     // Fallback: if beforeinstallprompt never fires, redirect after 5s
     setTimeout(() => {
-      if (!deferredPrompt) location.replace('YOUR_DUCKAI_URL');
+      if (!deferredPrompt) location.replace('https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1');
     }, 5000);
   </script>
 </body>
 </html>
+
