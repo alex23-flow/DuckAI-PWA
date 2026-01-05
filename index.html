@@ -4,32 +4,30 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Duck.ai</title>
-
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#FFFFFF">
   <link rel="icon" href="icon-192.png">
-  <link rel="apple-touch-icon" href="icon-192.png">
   <meta name="mobile-web-app-capable" content="yes">
-
-  <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin:0; display:flex; height:100vh; align-items:center; justify-content:center; }
-    a { color:#0064bd; text-decoration:none; }
-  </style>
-</head>
-<body>
-  <div>
-    <h1>Duck.ai</h1>
-    <p>This PWA acts as a wrapper for the Duck.ai web app.</p>
-    <p><a href="https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1" target="_blank" rel="noreferrer">Open Duck.ai web chat</a></p>
-    <p>Replace the link above with your Duck.ai URL or embed the app UI here.</p>
-  </div>
-
+  <meta http-equiv="refresh" content="0;url=https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1">
   <script>
+    // Fast JS redirect (faster than meta refresh)
+    (function(){
+      var target = "https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1";
+      if (location.href !== target) {
+        location.replace(target);
+      }
+    })();
+
+    // Register service worker for this origin (keeps PWA installable)
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js').catch(err => console.error('SW register failed:', err));
+      navigator.serviceWorker.register('sw.js').catch(console.error);
     }
   </script>
+</head>
+<body>
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1">
+    <p>If you are not redirected, <a href="https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1">open Duck.ai</a>.</p>
+  </noscript>
 </body>
 </html>
-
-
