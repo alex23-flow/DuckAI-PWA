@@ -1,6 +1,5 @@
 const CACHE_NAME = 'duckai-pwa-v2';
 const APP_SHELL = [
-  './',
   'index.html',
   'manifest.json',
   'offline.html',
@@ -52,6 +51,7 @@ self.addEventListener('fetch', event => {
     })
   );
 });
+
 
 
 
