@@ -1,24 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Duck.ai</title>
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#FFFFFF">
-  <link rel="icon" href="icon-192.png">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta http-equiv="refresh" content="0;url=https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1">
   <script>
-    // Fast JS redirect (faster than meta refresh)
-    (function(){
-      var target = "https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1";
-      if (location.href !== target) {
-        location.replace(target);
-      }
-    })();
-
-<script>
 const DUCK_URL = 'https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1'; // replace with real URL
 
 // Register service worker (keep relative path)
@@ -47,7 +29,23 @@ function isStandalone() {
   }
 })();
 </script>
-
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Duck.ai</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="icon" href="icon-192.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta http-equiv="refresh" content="0;url=https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1">
+  <script>
+    // Fast JS redirect (faster than meta refresh)
+    (function(){
+      var target = "https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1";
+      if (location.href !== target) {
+        location.replace(target);
+      }
+    })();
     
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 if (isStandalone) {
@@ -72,6 +70,7 @@ if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.
   </noscript>
 </body>
 </html>
+
 
 
 
