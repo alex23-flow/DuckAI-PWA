@@ -26,9 +26,10 @@
 
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(err => console.error('SW register failed:', err));
+      navigator.serviceWorker.register('sw.js').catch(err => console.error('SW register failed:', err));
     }
   </script>
 </body>
 </html>
+
 
