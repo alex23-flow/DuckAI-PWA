@@ -8,11 +8,20 @@ const APP_SHELL = [
 ];
 
 self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL))
-  );
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    for (const url of APP_SHELL) {
+      try {
+        await cache.add(url);
+      } catch (err) {
+        console.warn('Failed to cache', url, err);
+        // continue caching others instead of failing install
+      }
+    }
+  })());
   self.skipWaiting();
 });
+
 
 self.addEventListener('activate', event => {
   event.waitUntil(
@@ -41,16 +50,17 @@ self.addEventListener('fetch', event => {
       if (cached) return cached;
       if (new URL(req.url).origin !== location.origin) return fetch(req);
       return fetch(req).then(resp => {
-        // Cache same-origin GET responses
-        if (req.method === 'GET' && resp && resp.type !== 'error') {
-          const respClone = resp.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(req, respClone));
-        }
-        return resp;
-      }).catch(() => caches.match('offline.html'));
+  if (req.method === 'GET' && resp && resp.type !== 'error') {
+    const respClone = resp.clone();
+    caches.open(CACHE_NAME).then(cache => cache.put(req, respClone));
+  }
+  return resp;
+}).catch(() => caches.match('offline.html'));
+
     })
   );
 });
+
 
 
 
