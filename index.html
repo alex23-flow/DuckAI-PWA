@@ -1,35 +1,50 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Duck.ai</title>
+  <title>Duck.ai PWA</title>
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#FFFFFF">
-  <link rel="icon" href="icons/icon-192.png">
+  <meta name="theme-color" content="#ffffff">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta http-equiv="refresh" content="0;url=YOUR_DUCKAI_URL">
-  <script>
-    // Fast JS redirect (faster than meta refresh)
-    (function(){
-      var target = "https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1";
-      if (location.href !== target) {
-        location.replace(target);
-      }
-    })();
+  <style>body{font-family:system-ui;padding:1rem}button{padding:.6rem 1rem}</style>
+</head>
+<body>
+  <h1>Duck.ai</h1>
+  <p>Install the PWA for quick access.</p>
+  <div id="promptArea">
+    <button id="installBtn" style="display:none">Install app</button>
+    <a id="openLink" href="YOUR_DUCKAI_URL" target="_blank" rel="noreferrer">Open Duck.ai now</a>
+  </div>
 
-    // Register service worker for this origin (keeps PWA installable)
+  <script>
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
+
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js').catch(console.error);
     }
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.style.display = 'inline-block';
+    });
+
+    installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.style.display = 'none';
+      // After install accepted or dismissed, redirect to Duck.ai
+      location.replace('YOUR_DUCKAI_URL');
+    });
+
+    // Fallback: if beforeinstallprompt never fires, redirect after 5s
+    setTimeout(() => {
+      if (!deferredPrompt) location.replace('YOUR_DUCKAI_URL');
+    }, 5000);
   </script>
-</head>
-<body>
-  <noscript>
-    <meta http-equiv="refresh" content="0;url=https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1">
-    <p>If you are not redirected, <a href="https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1">open Duck.ai</a>.</p>
-  </noscript>
 </body>
 </html>
-
-
