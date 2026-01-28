@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <script>
-const DUCK_URL = 'https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1'; // replace with real URL
+const DUCK_URL = 'https://duck.ai/'; // replace with real URL
 
 // Register service worker (keep relative path)
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
@@ -21,7 +21,7 @@ function isStandalone() {
   if (isStandalone()) {
     // Navigate within the PWA window (not handing the URL to Firefox normal tab)
     // Use location.replace so no extra history entry is left.
-    location.replace(https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1);
+    location.replace(https://duck.ai/);
   } else {
     // Not installed: show a visible link or install prompt on the page.
     // Optionally auto-open after a longer user-visible delay:
@@ -37,11 +37,11 @@ function isStandalone() {
   <meta name="theme-color" content="#FFFFFF">
   <link rel="icon" href="icon-192.png">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta http-equiv="refresh" content="0;url=https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1">
+  <meta http-equiv="refresh" content="0;url=https://duck.ai/">
   <script>
     // Fast JS redirect (faster than meta refresh)
     (function(){
-      var target = "https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1";
+      var target = "https://duck.ai/";
       if (location.href !== target) {
         location.replace(target);
       }
@@ -49,12 +49,12 @@ function isStandalone() {
     
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 if (isStandalone) {
-  location.replace('https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1');
+  location.replace('https://duck.ai/');
 }
 
 if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
   // small delay gives the app time to become visible
-  setTimeout(() => location.replace('https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1'), 200);
+  setTimeout(() => location.replace('https://duck.ai/'), 200);
 }
     
     // Register service worker for this origin (keeps PWA installable)
@@ -65,11 +65,12 @@ if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.
 </head>
 <body>
   <noscript>
-    <meta http-equiv="refresh" content="0;url=https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1">
-    <p>If you are not redirected, <a href="https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1">open Duck.ai</a>.</p>
+    <meta http-equiv="refresh" content="0;url=https://duck.ai/">
+    <p>If you are not redirected, <a href="https://duck.ai/">open Duck.ai</a>.</p>
   </noscript>
 </body>
 </html>
+
 
 
 
